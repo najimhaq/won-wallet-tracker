@@ -1,5 +1,8 @@
 node_modules/
 .env
+.agents/
+.claude/
+.windsurf/
 dist/
 cat > .gitignore <<'EOF'
 node_modules/
@@ -12,5 +15,7 @@ coverage/
 *.log
 .DS_Store
 EOF
+
+/src/generated/prisma
 
 /src/generated/prisma
