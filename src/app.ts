@@ -9,7 +9,7 @@ import { auth } from './lib/auth.js';
 
 import { notFound } from './middlewares/not-found.js';
 import { errorHandler } from './middlewares/error-handler.js';
-
+import { healthRouter } from './routes/health.routes.js';
 
 export const app = express();
 
@@ -40,18 +40,8 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-
 //health check
 app.use('/api/health', healthRouter);
-
-//profile routes
-app.use('/api/users', userRouter);
-
-//author routes
-app.use('/api/authors', authorRouter);
-
-//book routes
-app.use('/api/books', bookRouter);
 
 //error & not found middleware
 app.use(notFound);
