@@ -7,7 +7,7 @@
 ---
 
 
-<div align="center">
+
 
 [![Next.js](https://img.shields.io/badge/Next.js-App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strictly_Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -55,7 +55,7 @@
 
 ---
 
-</div>
+
 
 ## ✨ Features
 
@@ -110,5 +110,3 @@ Built by **Najim Haq**.
 - GitHub: [@najimhaq](https://github.com/najimhaq)
 
 ---
-
-
