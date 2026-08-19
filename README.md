@@ -1,13 +1,8 @@
-
-
 # 💰 WonWallet
 
 **WonWallet** is a modern, intuitive expense tracker designed to help you take control of your finances. Track your spending, manage budgets, and grow your savings — all in one sleek application.
 
 ---
-
-
-
 
 [![Next.js](https://img.shields.io/badge/Next.js-App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strictly_Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -54,8 +49,6 @@
 | [Vercel](https://vercel.com/) | Frontend deployment option |
 
 ---
-
-
 
 ## ✨ Features
 
