@@ -1,8 +1,59 @@
+<div align="center">
 # 💰 WonWallet
 
 **WonWallet** is a modern, intuitive expense tracker designed to help you take control of your finances. Track your spending, manage budgets, and grow your savings — all in one sleek application.
 
 ---
+
+<div align="center">
+
+[![Next.js](https://img.shields.io/badge/Next.js-App_Router-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strictly_Typed-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
+[![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
+
+
+## Technology stack
+
+### Frontend
+
+| Technology | Purpose |
+| --- | --- |
+| [Next.js](https://nextjs.org/) | App Router, routing, rendering, and frontend framework |
+| [React](https://react.dev/) | Component-based user interface |
+| [TypeScript](https://www.typescriptlang.org/) | Static typing and safer application code |
+| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling system |
+| [daisyUI](https://daisyui.com/) | Tailwind component utilities |
+| [Framer Motion](https://motion.dev/) | UI animation and motion |
+| [React Icons](https://react-icons.github.io/react-icons/) | Icon library |
+| [Lucide](https://lucide.dev/) | Interface icons |
+
+### Backend
+
+| Technology | Purpose |
+| --- | --- |
+| [Node.js](https://nodejs.org/) | JavaScript runtime |
+| [Express.js](https://expressjs.com/) | REST API framework |
+| [TypeScript](https://www.typescriptlang.org/) | Typed backend development |
+| [MongoDB Atlas](https://www.mongodb.com/atlas) | Cloud document database |
+| [Mongoose](https://mongoosejs.com/) | MongoDB object modeling and validation |
+| [Better Auth](https://www.better-auth.com/) | Authentication and session management |
+| [Multer](https://github.com/expressjs/multer) | Multipart form-data and image handling |
+| [ImgBB](https://imgbb.com/) | Hosted profile-image storage |
+
+### Quality and product tooling
+
+| Technology | Purpose |
+| --- | --- |
+| [Zod](https://zod.dev/) | Schema validation where applicable |
+| [React Hook Form](https://react-hook-form.com/) | Form state management where applicable |
+| [TanStack Query](https://tanstack.com/query/latest) | Server-state management where applicable |
+| [Render](https://render.com/) | Backend deployment |
+| [Vercel](https://vercel.com/) | Frontend deployment option |
+
+---
+
+</div>
 
 ## ✨ Features
 
@@ -26,10 +77,10 @@
 ## 🚀 Tech Stack
 
 - **Frontend**: Next.js + TypeScript
-- **Backend**: Node.js + Express + Zod validation
-- **Database**: PostgreSQL / MongoDB
-- **Authentication**: JWT / OAuth
-- **Deployment**: Vercel / Docker
+- **Backend**: Node.js + Express.js + Zod validation
+- **Database**: PostgreSQL + Prisma
+- **Authentication**: Better Auth
+- **Deployment**: Vercel
 
 ---
 
@@ -37,7 +88,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/wonwallet.git
+git clone git@github.com:najimhaq/won-wallet-tracker.git
 
 # Navigate into the project
 cd wonwallet
@@ -47,3 +98,15 @@ yarn install
 
 # Run development server
 yarn dev
+
+
+## Author
+
+Built by **Najim Haq**.
+
+- Portfolio: [najimul.com](https://najimul.com)
+- GitHub: [@najimhaq](https://github.com/najimhaq)
+
+---
+
+</div>
