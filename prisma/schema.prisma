@@ -6,16 +6,11 @@ datasource db {
   provider = "postgresql"
 }
 
-// ১. ইউজার মডেল (আপাতত সিম্পল রাখছি)
-model User {
-  id           String        @id @default(cuid())
-  name         String
-  email        String        @unique
-  transactions Transaction[]
-  createdAt    DateTime      @default(now())
+enum UserRole {
+  USER
+  ADMIN
 }
 
-// ২. এনাম ডিফাইন করা (ঠিক আমাদের TS এর মতো)
 enum TransactionType {
   INCOME
   EXPENSE
@@ -30,17 +25,27 @@ enum Category {
   OTHER
 }
 
+model User {
+  id           String        @id @default(cuid())
+  name         String
+  email        String        @unique
+  image        String
+  role         UserRole      @default(USER)
+  transactions Transaction[]
+  createdAt    DateTime      @default(now())
+}
+
 // ৩. ট্রানজ্যাকশন মডেল (আমাদের TS Interface এর হুবহু রূপ)
 model Transaction {
-  id          String        @id @default(cuid())
+  id          String          @id @default(cuid())
   userId      String
-  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  amount      Float         // টাকার পরিমাণ (Decimal বা Float)
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Float // টাকার পরিমাণ (Decimal বা Float)
   type        TransactionType // TS Enum এর সাথে মিল রেখে
-  category    Category      // TS Enum এর সাথে মিল রেখে
-  description String?       // '?' মানে Optional
-  date        DateTime      // খরচের তারিখ
-  createdAt   DateTime      @default(now()) // অটোমেটিক সময় যুক্ত হবে
+  category    Category // TS Enum এর সাথে মিল রেখে
+  description String? // '?' মানে Optional
+  date        DateTime // খরচের তারিখ
+  createdAt   DateTime        @default(now()) // অটোমেটিক সময় যুক্ত হবে
 
   @@index([userId]) // পারফরম্যান্সের জন্য ইনডেক্স
 }
