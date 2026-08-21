@@ -1,24 +1,22 @@
-/*
-  Warnings:
+-- CreateEnum
+CREATE TYPE "UserRole" AS ENUM ('USER', 'ADMIN');
 
-  - You are about to drop the `User` table. If the table is not empty, all the data it contains will be lost.
+-- CreateEnum
+CREATE TYPE "TransactionType" AS ENUM ('INCOME', 'EXPENSE');
 
-*/
--- DropForeignKey
-ALTER TABLE "Transaction" DROP CONSTRAINT "Transaction_userId_fkey";
-
--- DropTable
-DROP TABLE "User";
+-- CreateEnum
+CREATE TYPE "Category" AS ENUM ('FOOD', 'TRANSPORT', 'SHOPPING', 'BILLS', 'SALARY', 'OTHER');
 
 -- CreateTable
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "emailVerified" BOOLEAN NOT NULL,
-    "image" TEXT NOT NULL,
+    "emailVerified" BOOLEAN NOT NULL DEFAULT false,
+    "image" TEXT,
     "role" "UserRole" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
@@ -40,6 +38,7 @@ CREATE TABLE "session" (
 -- CreateTable
 CREATE TABLE "account" (
     "id" TEXT NOT NULL,
+    "issuer" TEXT NOT NULL,
     "accountId" TEXT NOT NULL,
     "providerId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
@@ -68,6 +67,20 @@ CREATE TABLE "verification" (
     CONSTRAINT "verification_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Transaction" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "type" "TransactionType" NOT NULL,
+    "category" "Category" NOT NULL,
+    "description" TEXT,
+    "date" TIMESTAMP(3) NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Transaction_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
@@ -79,6 +92,12 @@ CREATE INDEX "session_userId_idx" ON "session"("userId");
 
 -- CreateIndex
 CREATE INDEX "account_userId_idx" ON "account"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "account_issuer_accountId_key" ON "account"("issuer", "accountId");
+
+-- CreateIndex
+CREATE INDEX "Transaction_userId_idx" ON "Transaction"("userId");
 
 -- AddForeignKey
 ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

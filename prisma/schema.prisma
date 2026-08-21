@@ -26,16 +26,19 @@ enum Category {
 }
 
 model User {
-  id            String        @id @default(cuid())
+  id            String        @id
   name          String
   email         String        @unique
-  emailVerified Boolean
-  image         String
+  emailVerified Boolean       @default(false)
+  image         String?
   role          UserRole      @default(USER)
+
   sessions      Session[]
   accounts      Account[]
   transactions  Transaction[]
+
   createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
   @@map("user")
 }
@@ -49,18 +52,20 @@ model Session {
   ipAddress String?
   userAgent String?
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@map("session")
 }
 
 model Account {
-  id                    String    @id
+  id                    String   @id
+  issuer                String
   accountId             String
   providerId            String
   userId                String
+
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -68,11 +73,13 @@ model Account {
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
+
   createdAt             DateTime
   updatedAt             DateTime
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([issuer, accountId])
   @@index([userId])
   @@map("account")
 }
@@ -88,17 +95,16 @@ model Verification {
   @@map("verification")
 }
 
-// ৩. ট্রানজ্যাকশন মডেল (আমাদের TS Interface এর হুবহু রূপ)
 model Transaction {
   id          String          @id @default(cuid())
   userId      String
   user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  amount      Float // টাকার পরিমাণ (Decimal বা Float)
-  type        TransactionType // TS Enum এর সাথে মিল রেখে
-  category    Category // TS Enum এর সাথে মিল রেখে
-  description String? // '?' মানে Optional
-  date        DateTime // খরচের তারিখ
-  createdAt   DateTime        @default(now()) // অটোমেটিক সময় যুক্ত হবে
+  amount      Float
+  type        TransactionType
+  category    Category
+  description String?
+  date        DateTime
+  createdAt   DateTime        @default(now())
 
-  @@index([userId]) // পারফরম্যান্সের জন্য ইনডেক্স
+  @@index([userId])
 }
