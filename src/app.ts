@@ -11,6 +11,7 @@ import { notFound } from './middlewares/not-found.js';
 import { errorHandler } from './middlewares/error-handler.js';
 import { healthRouter } from './routes/health.routes.js';
 import expenseRouter from './routes/expense.routes.js';
+import transactionRouter from './modules/transaction/transaction.routes.js';
 
 export const app = express();
 
@@ -44,7 +45,9 @@ app.use(express.urlencoded({ extended: true }));
 //health check
 app.use('/api/health', healthRouter);
 
-//express routes
+//transaction routes
+app.use('/api/transactions', transactionRouter);
+//expense routes
 app.use('/api/users', expenseRouter)
 
 //error & not found middleware

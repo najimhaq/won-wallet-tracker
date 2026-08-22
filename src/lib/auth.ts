@@ -1,3 +1,4 @@
+//src/lib/auth.ts
 import { prismaAdapter } from '@better-auth/prisma-adapter';
 import { betterAuth } from 'better-auth';
 import { prisma } from './db.js';

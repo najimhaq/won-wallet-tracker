@@ -3,7 +3,7 @@ import { prisma } from '../lib/db.js';
 import { auth } from '../lib/auth.js';
 import { createExpenseSchema } from '../schemas/expenseSchema.js';
 
-
+// ১. একটি এক্সপোর্টেড ফাংশন তৈরি করা (এটাই আমাদের Controller)
 export const createExpense = async (req: Request, res: Response) => {
   try {
     // ধাপ ১: অথেনটিকেশন চেক
