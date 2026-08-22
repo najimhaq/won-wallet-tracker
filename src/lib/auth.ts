@@ -14,15 +14,16 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  user:{
-    additionalFields:{
-      role:{
-        type:"string",
+  user: {
+    additionalFields: {
+      role: {
+        type: 'string',
         required: false,
-        defaultValue:"USER",
-        input:false,
-      }
-    }
+        defaultValue: 'USER',
+        input: false,
+        returned: true,
+      },
+    },
   },
   session: {
     cookieCache: {
