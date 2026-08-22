@@ -1,9 +1,21 @@
 import type { ErrorRequestHandler } from 'express';
+import { z } from 'zod';
 
 import { env } from '../config/env.js';
 import { AppError } from '../utils/app-error.js';
 
 export const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
+  if (error instanceof z.ZodError) {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation failed.',
+      errors: error.issues.map((issue) => ({
+        field: issue.path.join('.'),
+        message: issue.message,
+      })),
+    });
+  }
+
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({
       success: false,
